@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Builder</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: #1a1a2e;
+      color: white;
+      padding: 16px 32px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      display: flex;
+      gap: 24px;
+      padding: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── 왼쪽: 입력 폼 ── */
+    .builder-form {
+      flex: 1;
+      background: white;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .builder-form h2 {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      color: #1a1a2e;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #4f46e5;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .color-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .color-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+
+    .color-btn.active,
+    .color-btn:hover {
+      transform: scale(1.15);
+      border-color: #4f46e5;
+    }
+
+    .btn-add {
+      width: 100%;
+      padding: 12px;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-add:hover {
+      background: #3730a3;
+    }
+
+    /* ── 오른쪽: 미리보기 ── */
+    .preview-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .preview-card {
+      background: white;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .preview-card h2 {
+      font-size: 1.1rem;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+    }
+
+    .product-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      background: #f3f4f6;
+      transition: background 0.3s;
+    }
+
+    .product-info {
+      padding: 16px;
+    }
+
+    .product-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #e0e7ff;
+      color: #4f46e5;
+      margin-bottom: 8px;
+    }
+
+    .product-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .product-desc {
+      font-size: 0.88rem;
+      color: #666;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .product-price {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #4f46e5;
+    }
+
+    /* ── 제품 목록 ── */
+    .product-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .list-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fafafa;
+    }
+
+    .list-item-icon {
+      font-size: 1.6rem;
+    }
+
+    .list-item-info {
+      flex: 1;
+    }
+
+    .list-item-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .list-item-price {
+      font-size: 0.85rem;
+      color: #4f46e5;
+      font-weight: 700;
+    }
+
+    .list-item-delete {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ccc;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .list-item-delete:hover {
+      color: #ef4444;
+    }
+
+    .empty-msg {
+      text-align: center;
+      color: #aaa;
+      font-size: 0.9rem;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>🛍 Product Builder</header>
+
+<div class="container">
+
+  <!-- 입력 폼 -->
+  <div class="builder-form">
+    <h2>제품 정보 입력</h2>
+
+    <div class="form-group">
+      <label>제품 이름</label>
+      <input type="text" id="inputName" placeholder="예: 무선 이어폰 Pro" />
+    </div>
+
+    <div class="form-group">
+      <label>카테고리</label>
+      <select id="inputCategory">
+        <option value="전자기기">전자기기</option>
+        <option value="패션">패션</option>
+        <option value="가구">가구</option>
+        <option value="식품">식품</option>
+        <option value="스포츠">스포츠</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>설명</label>
+      <textarea id="inputDesc" placeholder="제품에 대한 간단한 설명을 입력하세요."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>가격 (₩)</label>
+      <input type="number" id="inputPrice" placeholder="예: 89000" min="0" />
+    </div>
+
+    <div class="form-group">
+      <label>대표 색상</label>
+      <div class="color-row" id="colorRow">
+        <button class="color-btn active" data-color="#f3f4f6" style="background:#f3f4f6" title="화이트"></button>
+        <button class="color-btn" data-color="#1a1a2e" style="background:#1a1a2e" title="블랙"></button>
+        <button class="color-btn" data-color="#4f46e5" style="background:#4f46e5" title="인디고"></button>
+        <button class="color-btn" data-color="#ef4444" style="background:#ef4444" title="레드"></button>
+        <button class="color-btn" data-color="#10b981" style="background:#10b981" title="그린"></button>
+        <button class="color-btn" data-color="#f59e0b" style="background:#f59e0b" title="옐로우"></button>
+      </div>
+    </div>
+
+    <button class="btn-add" onclick="addProduct()">+ 제품 추가</button>
+  </div>
+
+  <!-- 미리보기 -->
+  <div class="preview-section">
+    <div class="preview-card">
+      <h2>실시간 미리보기</h2>
+      <div class="product-card">
+        <div class="product-image" id="previewImage" style="background:#f3f4f6">🛍</div>
+        <div class="product-info">
+          <span class="product-badge" id="previewCategory">전자기기</span>
+          <div class="product-name" id="previewName">제품 이름</div>
+          <div class="product-desc" id="previewDesc">제품 설명이 여기에 표시됩니다.</div>
+          <div class="product-price" id="previewPrice">₩0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-card">
+      <h2>추가된 제품 목록</h2>
+      <div class="product-list" id="productList">
+        <p class="empty-msg" style="grid-column:1/-1">아직 추가된 제품이 없습니다.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const categoryEmoji = {
+    '전자기기': '📱',
+    '패션': '👗',
+    '가구': '🪑',
+    '식품': '🍎',
+    '스포츠': '⚽',
+  };
+
+  let selectedColor = '#f3f4f6';
+  const products = [];
+
+  // 색상 버튼 클릭
+  document.querySelectorAll('.color-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedColor = btn.dataset.color;
+      updatePreview();
+    });
+  });
+
+  // 입력 실시간 반영
+  ['inputName', 'inputCategory', 'inputDesc', 'inputPrice'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updatePreview);
+  });
+
+  function updatePreview() {
+    const name     = document.getElementById('inputName').value.trim() || '제품 이름';
+    const category = document.getElementById('inputCategory').value;
+    const desc     = document.getElementById('inputDesc').value.trim() || '제품 설명이 여기에 표시됩니다.';
+    const price    = Number(document.getElementById('inputPrice').value) || 0;
+    const emoji    = categoryEmoji[category] || '🛍';
+
+    document.getElementById('previewImage').textContent  = emoji;
+    document.getElementById('previewImage').style.background = selectedColor;
+    document.getElementById('previewCategory').textContent   = category;
+    document.getElementById('previewName').textContent       = name;
+    document.getElementById('previewDesc').textContent       = desc;
+    document.getElementById('previewPrice').textContent      = '₩' + price.toLocaleString();
+  }
+
+  function addProduct() {
+    const name     = document.getElementById('inputName').value.trim();
+    const category = document.getElementById('inputCategory').value;
+    const desc     = document.getElementById('inputDesc').value.trim();
+    const price    = Number(document.getElementById('inputPrice').value);
+
+    if (!name) { alert('제품 이름을 입력해주세요.'); return; }
+    if (!price) { alert('가격을 입력해주세요.'); return; }
+
+    products.push({ id: Date.now(), name, category, desc, price, color: selectedColor });
+    renderList();
+    clearForm();
+  }
+
+  function removeProduct(id) {
+    const idx = products.findIndex(p => p.id === id);
+    if (idx !== -1) products.splice(idx, 1);
+    renderList();
+  }
+
+  function renderList() {
+    const list = document.getElementById('productList');
+    if (products.length === 0) {
+      list.innerHTML = '<p class="empty-msg" style="grid-column:1/-1">아직 추가된 제품이 없습니다.</p>';
+      return;
+    }
+    list.innerHTML = products.map(p => `
+      <div class="list-item">
+        <div class="list-item-icon" style="background:${p.color};border-radius:8px;padding:4px">
+          ${categoryEmoji[p.category] || '🛍'}
+        </div>
+        <div class="list-item-info">
+          <div class="list-item-name">${p.name}</div>
+          <div class="list-item-price">₩${p.price.toLocaleString()}</div>
+        </div>
+        <button class="list-item-delete" onclick="removeProduct(${p.id})" title="삭제">✕</button>
+      </div>
+    `).join('');
+  }
+
+  function clearForm() {
+    document.getElementById('inputName').value  = '';
+    document.getElementById('inputDesc').value  = '';
+    document.getElementById('inputPrice').value = '';
+    updatePreview();
+  }
+
+  updatePreview();
+</script>
+</body>
+</html>
