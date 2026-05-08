@@ -10,6 +10,9 @@
             --text-color: #333333;
             --toggle-bg: #e0e0e0;
             --toggle-btn: #ffffff;
+            --input-bg: #f9f9f9;
+            --input-border: #dddddd;
+            --primary-color: #007bff;
             --transition-speed: 0.3s;
         }
 
@@ -18,6 +21,8 @@
             --text-color: #f0f0f0;
             --toggle-bg: #444444;
             --toggle-btn: #2a2a2a;
+            --input-bg: #2d2d2d;
+            --input-border: #444444;
         }
 
         body {
@@ -27,19 +32,27 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
+            justify-content: flex-start;
+            min-height: 100vh;
             margin: 0;
+            padding: 40px 20px;
             transition: background-color var(--transition-speed), color var(--transition-speed);
         }
 
         .container {
             text-align: center;
+            width: 100%;
+            max-width: 500px;
         }
 
         h1 {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            margin-bottom: 2rem;
+            opacity: 0.8;
         }
 
         .theme-toggle {
@@ -49,27 +62,119 @@
             border: none;
             background-color: var(--toggle-bg);
             color: var(--text-color);
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
             transition: background-color var(--transition-speed);
+            margin-bottom: 3rem;
         }
 
         .theme-toggle:hover {
             opacity: 0.8;
         }
+
+        /* Form Styles */
+        .contact-form {
+            text-align: left;
+            background-color: transparent;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--input-border);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .contact-form h2 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--input-border);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 id="greeting">안녕하세요!</h1>
-        <p>상단 버튼을 눌러 테마를 변경해보세요.</p>
+        <h1 id="greeting">제휴 문의</h1>
+        <p class="description">함께 성장할 파트너를 기다립니다.</p>
+        
         <button class="theme-toggle" id="theme-toggle">
             <span id="toggle-icon">🌙</span>
             <span id="toggle-text">다크 모드</span>
         </button>
+
+        <!-- Formspree Contact Form -->
+        <form action="https://formspree.io/f/mbdwaqge" method="POST" class="contact-form">
+            <!-- 안내: Formspree 엔드포인트 ID가 적용되었습니다. -->
+            
+            <div class="form-group">
+                <label for="name">성함 / 업체명</label>
+                <input type="text" id="name" name="name" placeholder="홍길동" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">이메일 주소</label>
+                <input type="email" id="email" name="_replyto" placeholder="example@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">문의 내용</label>
+                <textarea id="message" name="message" rows="5" placeholder="제휴 제안 내용을 상세히 입력해주세요." required></textarea>
+            </div>
+
+            <!-- 스팸 방지 및 커스텀 설정 -->
+            <input type="hidden" name="_subject" value="새로운 제휴 문의가 접수되었습니다!">
+            
+            <button type="submit" class="submit-btn">문의하기</button>
+        </form>
     </div>
 
     <script>
