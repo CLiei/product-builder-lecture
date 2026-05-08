@@ -6,192 +6,62 @@
     <meta name="google-adsense-account" content="ca-pub-8668879687214659">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8668879687214659"
      crossorigin="anonymous"></script>
-    <title>테마 스위처</title>
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --toggle-bg: #e0e0e0;
-            --toggle-btn: #ffffff;
-            --input-bg: #f9f9f9;
-            --input-border: #dddddd;
-            --primary-color: #007bff;
-            --transition-speed: 0.3s;
-        }
-
-        body.dark-mode {
-            --bg-color: #1a1a1a;
-            --text-color: #f0f0f0;
-            --toggle-bg: #444444;
-            --toggle-btn: #2a2a2a;
-            --input-bg: #2d2d2d;
-            --input-border: #444444;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            margin: 0;
-            padding: 40px 20px;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
-        }
-
-        .container {
-            text-align: center;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .description {
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-
-        .theme-toggle {
-            cursor: pointer;
-            padding: 10px 20px;
-            border-radius: 30px;
-            border: none;
-            background-color: var(--toggle-bg);
-            color: var(--text-color);
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: background-color var(--transition-speed);
-            margin-bottom: 3rem;
-        }
-
-        .theme-toggle:hover {
-            opacity: 0.8;
-        }
-
-        /* Form Styles */
-        .contact-form {
-            text-align: left;
-            background-color: transparent;
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--input-border);
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .contact-form h2 {
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .form-group input, 
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--input-border);
-            background-color: var(--input-bg);
-            color: var(--text-color);
-            font-family: inherit;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus, 
-        .form-group textarea:focus {
-            border-color: var(--primary-color);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            border-radius: 8px;
-            border: none;
-            background-color: var(--primary-color);
-            color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .submit-btn:hover {
-            opacity: 0.9;
-        }
-    </style>
+    <title>Product Builder Hub - 아이디어를 프로덕트로</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">PB Hub</a>
+            <div class="nav-links">
+                <a href="index.html">홈</a>
+                <a href="about.html">소개</a>
+                <a href="contact.html">문의</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <button class="theme-toggle" id="theme-toggle">
+                    <span id="toggle-icon">🌙</span>
+                    <span id="toggle-text">다크 모드</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
     <div class="container">
-        <h1 id="greeting">제휴 문의</h1>
-        <p class="description">함께 성장할 파트너를 기다립니다.</p>
-        
-        <button class="theme-toggle" id="theme-toggle">
-            <span id="toggle-icon">🌙</span>
-            <span id="toggle-text">다크 모드</span>
-        </button>
+        <section class="hero">
+            <h1>Product Builder Hub</h1>
+            <p>단순한 아이디어를 가치 있는 프로덕트로 바꾸는 여정</p>
+        </section>
 
-        <!-- Formspree Contact Form -->
-        <form action="https://formspree.io/f/mbdwaqge" method="POST" class="contact-form">
-            <!-- 안내: Formspree 엔드포인트 ID가 적용되었습니다. -->
-            
-            <div class="form-group">
-                <label for="name">성함 / 업체명</label>
-                <input type="text" id="name" name="name" placeholder="홍길동" required>
+        <h2>최신 제품 제작 인사이트</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>🚀 0에서 1을 만드는 프로덕트 기획법</h3>
+                <p>성공적인 프로덕트의 시작은 문제 정의에서 시작됩니다. 사용자가 진짜 겪고 있는 고통이 무엇인지 파악하고 이를 해결하기 위한 최소 기능 제품(MVP)을 설계하는 노하우를 공유합니다.</p>
             </div>
-
-            <div class="form-group">
-                <label for="email">이메일 주소</label>
-                <input type="email" id="email" name="_replyto" placeholder="example@email.com" required>
+            <div class="card">
+                <h3>🛠️ 2026년 주목해야 할 No-code 툴 Top 5</h3>
+                <p>코딩 없이도 복잡한 기능을 구현할 수 있는 시대입니다. 데이터베이스 연동부터 자동화까지, 1인 창업자가 혼자서도 서비스를 런칭할 수 있게 도와주는 최고의 도구들을 소개합니다.</p>
             </div>
-
-            <div class="form-group">
-                <label for="message">문의 내용</label>
-                <textarea id="message" name="message" rows="5" placeholder="제휴 제안 내용을 상세히 입력해주세요." required></textarea>
+            <div class="card">
+                <h3>📈 초기 사용자 1,000명을 모으는 마케팅 전략</h3>
+                <p>제품을 잘 만드는 것만큼 중요한 것이 알리는 것입니다. 광고비 없이 커뮤니티와 콘텐츠를 활용해 진성 팬을 확보하고 서비스를 성장시키는 실전 전략을 알아봅니다.</p>
             </div>
+        </div>
 
-            <!-- 스팸 방지 및 커스텀 설정 -->
-            <input type="hidden" name="_subject" value="새로운 제휴 문의가 접수되었습니다!">
-            
-            <button type="submit" class="submit-btn">문의하기</button>
-        </form>
+        <section style="margin-top: 60px;">
+            <h2>우리의 철학</h2>
+            <p>우리는 모든 빌더들이 자신의 잠재력을 발휘할 수 있는 환경을 믿습니다. Product Builder Hub는 단순히 기술적인 정보만 전달하는 것이 아니라, 제품을 만드는 과정에서 겪는 고민과 즐거움을 함께 나누는 공간이 되고자 합니다.</p>
+            <p>전문적인 지식과 실전 경험이 결합된 고품질의 콘텐츠를 통해 여러분의 프로덕트가 세상에 빛을 볼 수 있도록 돕겠습니다.</p>
+        </section>
 
         <!-- Disqus Comments Section -->
-        <div id="disqus_thread" style="margin-top: 50px;"></div>
+        <div id="disqus_thread" style="margin-top: 80px;"></div>
         <script>
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            /*
             var disqus_config = function () {
-            this.page.url = window.location.href;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = window.location.pathname; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.url = window.location.href;
+            this.page.identifier = window.location.pathname;
             };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
+            (function() {
             var d = document, s = d.createElement('script');
             s.src = 'https://productbuilder-e9dsjrtrqa.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
@@ -201,29 +71,10 @@
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
 
-    <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const toggleIcon = document.getElementById('toggle-icon');
-        const toggleText = document.getElementById('toggle-text');
-        const body = document.body;
+    <footer>
+        <p>&copy; 2026 Product Builder Hub. All rights reserved.</p>
+    </footer>
 
-        // 초기 테마 설정 확인
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            body.classList.add('dark-mode');
-            updateToggleUI(true);
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const isDark = body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            updateToggleUI(isDark);
-        });
-
-        function updateToggleUI(isDark) {
-            toggleIcon.textContent = isDark ? '☀️' : '🌙';
-            toggleText.textContent = isDark ? '라이트 모드' : '다크 모드';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

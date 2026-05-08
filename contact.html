@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-8668879687214659">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8668879687214659"
+     crossorigin="anonymous"></script>
+    <title>문의하기 - Product Builder Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">PB Hub</a>
+            <div class="nav-links">
+                <a href="index.html">홈</a>
+                <a href="about.html">소개</a>
+                <a href="contact.html">문의</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <button class="theme-toggle" id="theme-toggle">
+                    <span id="toggle-icon">🌙</span>
+                    <span id="toggle-text">다크 모드</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h1>제휴 및 협업 문의</h1>
+        <p class="description">함께 성장할 파트너를 기다립니다. 아래 양식을 작성해 주세요.</p>
+
+        <form action="https://formspree.io/f/mbdwaqge" method="POST" class="contact-form">
+            <div class="form-group">
+                <label for="name">성함 / 업체명</label>
+                <input type="text" id="name" name="name" placeholder="홍길동" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">이메일 주소</label>
+                <input type="email" id="email" name="_replyto" placeholder="example@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">문의 내용</label>
+                <textarea id="message" name="message" rows="5" placeholder="제휴 제안 내용을 상세히 입력해주세요." required></textarea>
+            </div>
+
+            <input type="hidden" name="_subject" value="새로운 제휴 문의가 접수되었습니다!">
+            <button type="submit" class="submit-btn">문의하기</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Product Builder Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
